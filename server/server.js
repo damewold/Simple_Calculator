@@ -40,18 +40,21 @@ app.post('/inputs', (req, res) => {
   };
   // numberArray.push(calcResult)
   console.log(calcResult);
-
+numberArray.push(calcResult);
   res.sendStatus(200);
 
 })
 
 app.get('/history', (req, res) => {
   console.log('Got request from client');
-  res.send(calcResult);
+  res.send(numberArray);
 })
 
-
-
+app.delete('/delete', (req,res)=>{
+  console.log('Reset History',req.body)
+  numberArray.splice(calcResult);
+  res.sendStatus(200);
+})
 
 
 

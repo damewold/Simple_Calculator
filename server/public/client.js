@@ -8,8 +8,8 @@ $(document).ready(onReady);
 function onReady() {
     console.log('in onReady');
     $('.key-operator').on('click', postInputToServer);
-    $('.key-operator').on('click', appendHistoryToDom);
-    // $('#clear-btn').on('click', clearHistory);
+    $('#submit-btn').on('click', appendHistoryToDom);
+    $('#clear-btn').on('click', clearHistory);
 
 };
 
@@ -19,9 +19,9 @@ function onReady() {
 function postInputToServer(event) {
     event.preventDefault();
     console.log('In postInputToServer');
-    $('.key-operator').removeClass('selected');
+    // $('.key-operator').removeClass('selected');
     operator = this.id;
-    $(this).addClass('selected')
+    // $(this).addClass('selected')
     let number1 = $('#number1-in').val();
     let number2 = $('#number2-in').val();
     $('#number1-in').val('');
@@ -72,16 +72,37 @@ function appendHistoryToDom(event) {
     })
         .then(function (response) {
             console.log('Got response from server', response)
-                // $('#resultTable').empty();
-                $('#resultTable').append(`<tr><td>${response.result}</td></tr>`)
-                // $('#containerList').empty();
-                $('#containerList').append(`<li>${response.number1}${response.operator}${response.number2}=${response.result}</li>`)
-            
+            for(i=0;i<response.length;i++){
+                $('resultTable').empty();
+                $('#resultTable').append(`<tr><td>${response[i].result}</td></tr>`)
+                $('#containerList').append(`<li>${response[i].number1}${response[i].operator}${response[i].number2}=${response[i].result}</li>`)
+            }
         })
         .catch(function (error) {
             console.log('error', error)
         })
 
+
+};
+
+function clearHistory (event){
+    event.preventDefault();
+ console.log('in clearTheDom');
+ $('resultTable').empty();
+
+    $.ajax({
+        method:'DELETE',
+         url:'/delete'
+    })
+    .then (function (response){
+        console.log('Reset calculator', response);
+        // appendHistoryToDom();
+    $( '#clear-btn' ).prop( 'disabled', false );
+
+    })
+    .catch( function (error){
+        console.log('Error', error);
+    })
 
 }
 
