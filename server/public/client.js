@@ -44,7 +44,7 @@ function postInputToServer(event) {
                 console.log('Error:', error);
             })
 
-        // appendGuessHistory();
+        operationCalculate();
     };
 
 };
@@ -55,12 +55,8 @@ function validateInputs( number1, number2 ) {
     if ( !number1 || !number2 ) {
      alert( 'Two inputs are required!' );
       return false;
-    }
-    else if ( Number( number1 ) || Number( number2 ) ) {
-      alert( `!` );
-      return false;
-    }
-    else {
+    }else {
       return true;
     }
   };
+
