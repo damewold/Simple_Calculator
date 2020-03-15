@@ -8,29 +8,20 @@ $(document).ready(onReady);
 function onReady() {
     console.log('in onReady');
     $('.key-operator').on('click', postInputToServer);
-    // $('#subtract-btn').on('click', operationCalculate);
-    // $('#Multiply-btn').on('click', operationCalculate);
-    // $('#divide-btn').on('click', operationCalculate);
-    // $('#submit-btn').on('click', postInputToServer);
+    $('.key-operator').on('click', appendHistoryToDom);
     // $('#clear-btn').on('click', clearHistory);
 
 };
 
 
 //write postInputToServer function
-function changeKeyToVar (event){
-    event.preventDefault();
-    $('.key-operator').removeClass('selected');
-     operator=this.id;
-    $(this).addClass('selected')
-    console.log('in changekeyToVar',operator);
-    postInputToServer();
-};
 
 function postInputToServer(event) {
     event.preventDefault();
     console.log('In postInputToServer');
-
+    $('.key-operator').removeClass('selected');
+    operator = this.id;
+    $(this).addClass('selected')
     let number1 = $('#number1-in').val();
     let number2 = $('#number2-in').val();
     $('#number1-in').val('');
@@ -38,25 +29,26 @@ function postInputToServer(event) {
 
     // if (validateInputs(number1,operator, number2)) {
 
-        let inputNumbers = { number1,operator, number2 };
-        
+    let inputNumbers = { number1, operator, number2 };
 
-        $.ajax({
-            method:'POST',
-            url: '/inputs',
-            data: inputNumbers
+
+    $.ajax({
+        method: 'POST',
+        url: '/inputs',
+        data: inputNumbers
+    })
+        .then(function (response) {
+            console.log('Got response from Server', response);
         })
-            .then(function (response) {
-                console.log('Got input Numbers from Server', response);
-            })
-            .catch(function (error) {
-                console.log('Error:', error);
-            })
-
-        // operationCalculate();
-    };
+        .catch(function (error) {
+            console.log('Error:', error);
+        })
+    //    appendHistoryToDom();
+};
 
 // };
+
+
 
 // function validateInputs( number1,operator, number2 ) {
 //     event.preventDefault();
@@ -69,22 +61,31 @@ function postInputToServer(event) {
 //     }
 //   };
 
-//   function operationCalculate(event){
-//       event.preventDefault();
-//       console.log('in operationCalculate');
-      
-//  $.ajax({
-//      method:'GET',
-//      url:'/operations'
-//  })
+//write appendHistoryToDome
 
-//  .then( function(response){
-//      console.log('Got response inoperationCalculate', response);
-    
-//  })
-//  .catch(function(error){
-//      console.log('Error',error);
-//  })
+function appendHistoryToDom(event) {
+    event.preventDefault();
+    console.log('in appendHistoryToDom');
+    $.ajax({
+        method: 'GET',
+        url: '/history',
+    })
+        .then(function (response) {
+            console.log('Got response from server', response)
+                // $('#resultTable').empty();
+                $('#resultTable').append(`<tr><td>${response.result}</td></tr>`)
+                // $('#containerList').empty();
+                $('#containerList').append(`<li>${response.number1}${response.operator}${response.number2}=${response.result}</li>`)
+            
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        })
 
-//   };
+
+}
+
+
+
+
 
