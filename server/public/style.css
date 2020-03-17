@@ -1,0 +1,14 @@
+body{
+    background-color:lightgrey;
+    color:darkblue
+}
+
+.key-operator{
+   background-color: cyan;
+   color:red;
+}
+
+#clear-btn, #submit-btn{
+    background-color: yellow;
+    color: purple;
+}

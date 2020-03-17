@@ -52,7 +52,7 @@ app.get('/history', (req, res) => {
 
 app.delete('/delete', (req,res)=>{
   console.log('Reset History',req.body)
-  numberArray.splice(calcResult);
+  numberArray=[];
   res.sendStatus(200);
 })
 
