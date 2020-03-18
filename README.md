@@ -15,8 +15,6 @@ This Project aims to create a simple calculator that computes two inputs using a
 The calculator can compute basic mathematical operations of addition, subtraction, multiplication and division.
 
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
-
 
 
   ## Built With
