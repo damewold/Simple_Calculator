@@ -6,9 +6,15 @@ body{
 .key-operator{
    background-color: cyan;
    color:red;
+   font-weight: bold;
+   font:icon,times,arial;
+   font-size: large;
 }
 
 #clear-btn, #submit-btn{
     background-color: yellow;
     color: purple;
+    font-weight: bold;
+   font:icon,times,arial;
+   font-size: large;
 }

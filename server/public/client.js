@@ -10,7 +10,8 @@ function onReady() {
     $('.key-operator').on('click', postInputToServer);
     $('#submit-btn').on('click', appendHistoryToDom);
     $('#clear-btn').on('click', clearHistory);
-
+    appendHistoryToDom();
+    
 };
 
 
@@ -69,8 +70,7 @@ function postInputToServer(event) {
 
     //write appendHistoryToDome
 
-    function appendHistoryToDom(event) {
-        event.preventDefault();
+    function appendHistoryToDom() {
        console.log('in appendHistoryToDom');
     //send a request for the information to displayed on the DOM using the 'GET' method
         $.ajax({
@@ -81,9 +81,10 @@ function postInputToServer(event) {
                 console.log('Got response from server', response)
     //empty the container that will be used to append the history of calculations excuted          
                      $('#containerList').empty();
+                   
                 for (i = 0; i < response.length; i++) {
-                    $('#resultTable').empty();
     //append the result and history to the DOM
+                    $('#resultTable').empty();
                     $('#resultTable').append(`<tr><th>${response[i].result}</th></tr>`)
                     $('#containerList').append(`<li>${response[i].number1}${response[i].operator}${response[i].number2}=${response[i].result}</li>`)
                 }
