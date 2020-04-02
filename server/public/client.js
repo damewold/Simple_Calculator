@@ -7,25 +7,31 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('in onReady');
-    $('.key-operator').on('click', postInputToServer);
-    $('#submit-btn').on('click', appendHistoryToDom);
+    $('.key-operator').on('click', operatorClick);
+    $('#submit-btn').on('click', postInputToServer);
     $('#clear-btn').on('click', clearHistory);
-    appendHistoryToDom();
+    
     
 };
 
+function operatorClick (event){
+    event.preventDefault();
+    console.log('in Operator')
+    operator = $(this).val();
+    console.log('operator:', $(this).val());
+    
+
+   
+};
+
+let operator;
 
 //write postInputToServer function
 
 function postInputToServer(event) {
     event.preventDefault();
     console.log('In postInputToServer');
-    $('.key-operator').removeClass('selected');
-    let operator=null;
-//get the operator to be a variable 
-    operator = $(this).val();
-    console.log('operator:', $(this).val());
-    $(this).addClass('selected')
+
     let number1 = $('#number1-in').val();
     let number2 = $('#number2-in').val();
     $('#number1-in').val('');
@@ -34,6 +40,7 @@ function postInputToServer(event) {
     if (validateInputs(number1, operator, number2)) {
 
         let inputNumbers = { number1, operator, number2 };
+        console.log(inputNumbers);
 
 //send the object to the server side so that it can be used to do the calculation
         $.ajax({
@@ -44,7 +51,9 @@ function postInputToServer(event) {
 //check if you have received a response from the server
             .then(function (response) {
                 console.log('Got response from Server', response);
+                 appendHistoryToDom();
             })
+               
             .catch(function (error) {
                 console.log('Error:', error);
             })
@@ -58,11 +67,11 @@ function postInputToServer(event) {
     function validateInputs(number1, operator, number2) {
         event.preventDefault();
         console.log('Validating inputs', operator, number1, number2);
-        if (operator==='') {
-            alert('Click on operator!');
+        if ((!number1 || !number2)&&(number1===''||number2==='')) {
+            $('#alert').append('Both inputs need to be filled!')
             return false;
-        } else if (!number1 || !number2) {
-            alert('Both inputs need to be filled!')
+        } else if (!operator||operator==='') {
+            $('#alert').append('Click on operator!');
         } else {
             return true;
         }

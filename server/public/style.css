@@ -1,14 +1,25 @@
 body{
-    background-color:lightgrey;
-    color:darkblue
+    background-color: lightgoldenrodyellow;
+    color:darkblue;
+    
 }
 
+h1{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#number1-in,#number2-in{
+    font-size: xx-large;
+    font: icon,times,arial;
+    font-weight: bold;
+}
 .key-operator{
-   background-color: cyan;
+   background-color: lightgreen;
    color:red;
    font-weight: bold;
    font:icon,times,arial;
-   font-size: large;
+   font-size: xx-large;
 }
 
 #clear-btn, #submit-btn{
@@ -16,5 +27,30 @@ body{
     color: purple;
     font-weight: bold;
    font:icon,times,arial;
-   font-size: large;
+   font-size: xx-large;
 }
+
+.alert-danger{
+    margin:0;
+    padding-top: 0;
+    color: darkorchid;
+    font:icon,times,arial;
+   font-size: xx-large;
+}
+
+#history{
+    font: icon,times,arial;
+    font-weight: bold;
+    font-size: xx-large;
+    background-color: cyan;
+    color:red
+   
+}
+
+#resultTable,#containerList{
+    font: icon,times,arial;
+    font-size: xx-large;
+    font-weight: bold;
+
+}
+
