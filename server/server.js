@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,6 +20,7 @@ app.post('/inputs', (req, res) => {
   operator = numberObj.operator;
   console.log('Got input from client', numberObj);
 //write a conditional that will process and calculate using the info from th object
+
   if (numberObj.operator === 'add-btn') {
     result = Number(number1) + Number(number2);
     key = '+';
@@ -54,7 +55,10 @@ app.get('/history', (req, res) => {
 //write a delete app that will reset by setting the number array to empty
 app.delete('/delete', (req,res)=>{
   console.log('Reset History',req.body)
-  numberArray=[];
+for (i=0;i<numberArray.length;i++){
+  numberArray.splice(i,numberArray.length);
+};
+  // numberArray=[];
   res.sendStatus(200);
 })
 
