@@ -14,7 +14,7 @@ This Project aims to create a simple calculator that computes two inputs using a
 
 The calculator can compute basic mathematical operations of addition, subtraction, multiplication and division.
 
-To see the fully functional site, please visit: https://stark-fjord-12878.herokuapp.com/?fbclid=IwAR3299rhUaYZbVjQUwGHOTgBOiG9coxasaQkkXPSj1M8Nn-n2TVFKAe9hPU
+To see the fully functional site, please visit: https://stark-fjord-12878.herokuapp.com/
 
   ## Built With
   - HTML
