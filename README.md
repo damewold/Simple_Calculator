@@ -5,7 +5,7 @@
 
 # Server Side Calculator
 
-
+![](server/public/SimpleCalculator.png)
 
 ## Description
 _Duration: 2 days_
