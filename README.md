@@ -5,7 +5,7 @@
 
 # Server Side Calculator
 
-![](server/public/SimpleCalculator.png)
+<img src='https://github.com/damewold/Simple_Calculator/blob/master/server/public/calc.gif'/>
 
 ## Description
 _Duration: 2 days_
